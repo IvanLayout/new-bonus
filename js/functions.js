@@ -72,3 +72,96 @@ document.addEventListener('DOMContentLoaded', () =>{
 		}
 	});
 });
+
+
+const STORAGE_KEY = 'myTableColumns';
+
+function saveTableState(table) {
+	const ths = table.querySelectorAll('thead th');
+
+	const order = [];
+	const widths = [];
+
+	ths.forEach(th => {
+		order.push(th.dataset.key);
+		widths.push(th.offsetWidth);
+	});
+
+	localStorage.setItem(
+		STORAGE_KEY,
+		JSON.stringify({ order, widths })
+	);
+}
+
+function restoreTableState(table) {
+	const saved = localStorage.getItem(STORAGE_KEY);
+	if (!saved) return;
+
+	const { order, widths } = JSON.parse(saved);
+
+	const headRow = table.querySelector('thead tr');
+	const bodyRows = table.querySelectorAll('tbody tr');
+
+	order.forEach(key => {
+		const th = headRow.querySelector(`th[data-key="${key}"]`);
+		if (!th) return;
+
+		headRow.appendChild(th);
+
+		bodyRows.forEach(row => {
+			const td = row.querySelector(`td[data-key="${key}"]`);
+			if (td) row.appendChild(td);
+		});
+	});
+
+	order.forEach((key, i) => {
+		const th = headRow.querySelector(`th[data-key="${key}"]`);
+		if (th && widths[i]) {
+			th.style.width = widths[i] + 'px';
+		}
+	});
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+	const table = document.querySelector('#myTable');
+
+	restoreTableState(table);
+
+	const sortable = new Sortable(
+    table.querySelector('thead tr'),
+	{
+		animation: 150,
+		handle: 'th',
+		draggable: 'th',
+		filter: '.no-drag',
+		onMove(evt) {
+			const dragged = evt.dragged;
+			const target  = evt.related;
+
+			if (dragged.classList.contains('no-drag')) return false;
+			if (target && target.classList.contains('no-drag')) return false;
+
+			return true;
+		},
+		onEnd(evt) {
+			const from = evt.oldIndex;
+			const to = evt.newIndex;
+
+			table.querySelectorAll('tbody tr').forEach(row => {
+				const cells = row.children;
+				const moving = cells[from];
+
+				if (from < to) {
+					row.insertBefore(moving, cells[to].nextSibling);
+				} else {
+					row.insertBefore(moving, cells[to]);
+				}
+			});
+
+			saveTableState(table);
+		}
+    }
+  );
+
+  const columnResizer = new ColumnResizer(table, sortable);
+});

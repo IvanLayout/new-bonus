@@ -27,7 +27,7 @@
 		<div class="wrap">
 			<!-- Шапка -->
 			<header class="header">
-				<div class="cont">
+				<div class="cont cont-big">
 					<div class="header__left _flex">
 						<a href="/" class="header__back">
 							<svg>
@@ -45,12 +45,22 @@
 					<div class="cont cont-big">
 						<div class="info-page__flex _flex">
 							<div class="info-page__coll">
-								
+								<div class="filter _flex">
+									<button type="button" class="filter__btn">
+										<span>Добавить фильтр</span>
+									</button>
+									<button type="button" class="filter__item">
+										<span>Сумма полученных бонусов с 12.AUG.25 - 24.AUG.25 от 100&euro;</span>
+										<svg class="filter__item-close">
+											<use xlink:href="images/sprite.svg#close"></use>
+										</svg>
+									</button>
+								</div>
 
 								<div class="info-table">
 									<div class="info-table__head _flex">
 										<form action="" class="main-search _flex">
-											<input type="text" value="" placeholder="Найти ближайший адрес" class="main-search__input">
+											<input type="text" value="" placeholder="10 000" class="main-search__input">
 
 											<button type="submit" class="main-search__submit">
 												<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,117 +72,259 @@
 										<div class="info-table__head-btns _flex">
 											<button type="button" class="info-table__head-btn">
 												<svg>
-													<use xlink:href="images/sprite.svg#"></use>
+													<use xlink:href="images/sprite.svg#def"></use>
 												</svg>
 											</button>
 											<button type="button" class="info-table__head-btn">
 												<svg>
-													<use xlink:href="images/sprite.svg#"></use>
+													<use xlink:href="images/sprite.svg#def"></use>
 												</svg>
 											</button>
 											<button type="button" class="info-table__head-btn">
 												<svg>
-													<use xlink:href="images/sprite.svg#"></use>
+													<use xlink:href="images/sprite.svg#def"></use>
 												</svg>
 											</button>
 										</div>
 									</div>
 
-									<table>
-										<thead>
-											<tr>
-												<th>
-													1
+									<div class="info-table__scroll">
+										<table class="info-table__table" id="myTable">
+											<thead>
+												<tr>
+													<th data-key="number" draggable="false" class="no-drag no-resize"></th>
+													<th data-key="name" draggable="true">
+														<div class="info-table__table-text">2</div>
 
-													<div class="mini-modal">
-														<button class="mini-modal__btn">
-															<svg>
-																<use xlink:href="images/sprite.svg#dots"></use>
-															</svg>
-														</button>
+														<div class="mini-modal">
+															<button class="mini-modal__btn">
+																<svg>
+																	<use xlink:href="images/sprite.svg#dots"></use>
+																</svg>
+															</button>
 
-														<div class="mini-modal__modal">
-															<a href="/" class="mini-modal__link">Удалить</a>
-															<a href="/" class="mini-modal__link">В архив</a>
+															<div class="mini-modal__modal">
+																<a href="/" class="mini-modal__link">Удалить</a>
+																<a href="/" class="mini-modal__link">В архив</a>
+															</div>
 														</div>
-													</div>
-												</th>
-												<th>2
+													</th>
+													<th data-key="age" draggable="true">
+														<div class="info-table__table-text">3</div>
 
-													<div class="mini-modal">
-														<button class="mini-modal__btn">
-															<svg>
-																<use xlink:href="images/sprite.svg#dots"></use>
-															</svg>
-														</button>
+														<div class="mini-modal">
+															<button class="mini-modal__btn">
+																<svg>
+																	<use xlink:href="images/sprite.svg#dots"></use>
+																</svg>
+															</button>
 
-														<div class="mini-modal__modal">
-															<a href="/" class="mini-modal__link">Удалить</a>
-															<a href="/" class="mini-modal__link">В архив</a>
+															<div class="mini-modal__modal">
+																<a href="/" class="mini-modal__link">Удалить</a>
+																<a href="/" class="mini-modal__link">В архив</a>
+															</div>
 														</div>
-													</div>
-												</th>
-												<th>3
+													</th>
+													<th data-key="city" draggable="true">
+														<div class="info-table__table-text">4</div>
 
-													<div class="mini-modal">
-														<button class="mini-modal__btn">
-															<svg>
-																<use xlink:href="images/sprite.svg#dots"></use>
-															</svg>
-														</button>
+														<div class="mini-modal">
+															<button class="mini-modal__btn">
+																<svg>
+																	<use xlink:href="images/sprite.svg#dots"></use>
+																</svg>
+															</button>
 
-														<div class="mini-modal__modal">
-															<a href="/" class="mini-modal__link">Удалить</a>
-															<a href="/" class="mini-modal__link">В архив</a>
+															<div class="mini-modal__modal">
+																<a href="/" class="mini-modal__link">Удалить</a>
+																<a href="/" class="mini-modal__link">В архив</a>
+															</div>
 														</div>
-													</div>
-												</th>
-												<th>4
+													</th>
+													<th data-key="val" draggable="true">
+														<div class="info-table__table-text">Я пойду</div>
 
-													<div class="mini-modal">
-														<button class="mini-modal__btn">
-															<svg>
-																<use xlink:href="images/sprite.svg#dots"></use>
-															</svg>
-														</button>
+														<div class="mini-modal">
+															<button class="mini-modal__btn">
+																<svg>
+																	<use xlink:href="images/sprite.svg#dots"></use>
+																</svg>
+															</button>
 
-														<div class="mini-modal__modal">
-															<a href="/" class="mini-modal__link">Удалить</a>
-															<a href="/" class="mini-modal__link">В архив</a>
+															<div class="mini-modal__modal">
+																<a href="/" class="mini-modal__link">Удалить</a>
+																<a href="/" class="mini-modal__link">В архив</a>
+															</div>
 														</div>
-													</div>
-												</th>
-												<th>5
+													</th>
+													<th data-key="val2" draggable="true">
+														<div class="info-table__table-text">Я пойду</div>
 
-													<div class="mini-modal">
-														<button class="mini-modal__btn">
-															<svg>
-																<use xlink:href="images/sprite.svg#dots"></use>
-															</svg>
-														</button>
+														<div class="mini-modal">
+															<button class="mini-modal__btn">
+																<svg>
+																	<use xlink:href="images/sprite.svg#dots"></use>
+																</svg>
+															</button>
 
-														<div class="mini-modal__modal">
-															<a href="/" class="mini-modal__link">Удалить</a>
-															<a href="/" class="mini-modal__link">В архив</a>
+															<div class="mini-modal__modal">
+																<a href="/" class="mini-modal__link">Удалить</a>
+																<a href="/" class="mini-modal__link">В архив</a>
+															</div>
 														</div>
-													</div>
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-										</tbody>
-									</table>
+													</th>
+													<th data-key="val3" draggable="true">
+														<div class="info-table__table-text">Я пойду</div>
+
+														<div class="mini-modal">
+															<button class="mini-modal__btn">
+																<svg>
+																	<use xlink:href="images/sprite.svg#dots"></use>
+																</svg>
+															</button>
+
+															<div class="mini-modal__modal">
+																<a href="/" class="mini-modal__link">Удалить</a>
+																<a href="/" class="mini-modal__link">В архив</a>
+															</div>
+														</div>
+													</th>
+													<th data-key="val4" draggable="true">
+														<div class="info-table__table-text">Я пойду</div>
+
+														<div class="mini-modal">
+															<button class="mini-modal__btn">
+																<svg>
+																	<use xlink:href="images/sprite.svg#dots"></use>
+																</svg>
+															</button>
+
+															<div class="mini-modal__modal">
+																<a href="/" class="mini-modal__link">Удалить</a>
+																<a href="/" class="mini-modal__link">В архив</a>
+															</div>
+														</div>
+													</th>
+													<th data-key="val5" draggable="true">
+														<div class="info-table__table-text">Я пойду</div>
+
+														<div class="mini-modal">
+															<button class="mini-modal__btn">
+																<svg>
+																	<use xlink:href="images/sprite.svg#dots"></use>
+																</svg>
+															</button>
+
+															<div class="mini-modal__modal">
+																<a href="/" class="mini-modal__link">Удалить</a>
+																<a href="/" class="mini-modal__link">В архив</a>
+															</div>
+														</div>
+													</th>
+													<th data-key="val6" draggable="true">
+														<div class="info-table__table-text">Я пойду</div>
+
+														<div class="mini-modal">
+															<button class="mini-modal__btn">
+																<svg>
+																	<use xlink:href="images/sprite.svg#dots"></use>
+																</svg>
+															</button>
+
+															<div class="mini-modal__modal">
+																<a href="/" class="mini-modal__link">Удалить</a>
+																<a href="/" class="mini-modal__link">В архив</a>
+															</div>
+														</div>
+													</th>
+													<th data-key="val7" draggable="true">
+														<div class="info-table__table-text">Я пойду</div>
+
+														<div class="mini-modal">
+															<button class="mini-modal__btn">
+																<svg>
+																	<use xlink:href="images/sprite.svg#dots"></use>
+																</svg>
+															</button>
+
+															<div class="mini-modal__modal">
+																<a href="/" class="mini-modal__link">Удалить</a>
+																<a href="/" class="mini-modal__link">В архив</a>
+															</div>
+														</div>
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td data-key="number">1</td>
+													<td data-key="name"></td>
+													<td data-key="age">Я пойду домой</td>
+													<td data-key="city"></td>
+													<td data-key="val"></td>
+													<td data-key="val2"></td>
+													<td data-key="val3"></td>
+													<td data-key="val4"></td>
+													<td data-key="val5"></td>
+													<td data-key="val6"></td>
+													<td data-key="val7"></td>
+												</tr>
+												<tr>
+													<td data-key="number">2</td>
+													<td data-key="name"></td>
+													<td data-key="age">Я пойду домой</td>
+													<td data-key="city"></td>
+													<td data-key="val"></td>
+													<td data-key="val2"></td>
+													<td data-key="val3"></td>
+													<td data-key="val4"></td>
+													<td data-key="val5"></td>
+													<td data-key="val6"></td>
+													<td data-key="val7"></td>
+												</tr>
+												<tr>
+													<td data-key="number">3</td>
+													<td data-key="name"></td>
+													<td data-key="age">Я пойду домой</td>
+													<td data-key="city"></td>
+													<td data-key="val"></td>
+													<td data-key="val2"></td>
+													<td data-key="val3"></td>
+													<td data-key="val4"></td>
+													<td data-key="val5"></td>
+													<td data-key="val6"></td>
+													<td data-key="val7"></td>
+												</tr>
+												<tr>
+													<td data-key="number">4</td>
+													<td data-key="name"></td>
+													<td data-key="age">Я пойду домой</td>
+													<td data-key="city"></td>
+													<td data-key="val"></td>
+													<td data-key="val2"></td>
+													<td data-key="val3"></td>
+													<td data-key="val4"></td>
+													<td data-key="val5"></td>
+													<td data-key="val6"></td>
+													<td data-key="val7"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 							<div class="info-page__colr">
+								<button type="button" class="info-page__btn">
+									<span>Присвоить бонус</span>
+								</button>
 
+								<button type="button" class="info-page__btn">
+									<span>Настроить Email рассылку</span>
+								</button>
+
+								<button type="button" class="info-page__btn">
+									<span>Настроить SMS рассылку</span>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -182,6 +334,9 @@
 
 
 		<!-- Подключение javascript файлов -->
+		<script src="js/Sortable.min.js"></script>
+		<script src="js/column-resizer.js"></script>
+
 		<script src="js/functions.js"></script>
 	</body>
 </html>
