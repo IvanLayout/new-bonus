@@ -23,7 +23,8 @@
         th.style.position = "relative";
         th.appendChild(resizer);
 
-        let startX, startWidth;
+        let startX, startWidth, finalWidth;
+        let guideLine;
 
         resizer.addEventListener("mousedown", (e) => {
             e.preventDefault();
@@ -35,16 +36,32 @@
 
             startX = e.pageX;
             startWidth = th.offsetWidth;
+            finalWidth = startWidth;
+
+            const thRect = th.getBoundingClientRect();
+            const tableRect = this.table.getBoundingClientRect();
+
+            // 📏 лінія на всю висоту таблиці
+            guideLine = document.createElement("div");
+            guideLine.className = "column-resize-guide";
+            guideLine.style.left = thRect.right + "px";
+            guideLine.style.top = tableRect.top + "px";
+            guideLine.style.height = tableRect.height + "px";
+
+            document.body.appendChild(guideLine);
 
             const resize = (e) => {
-                let newWidth = startWidth + (e.pageX - startX);
+                let delta = e.pageX - startX;
+                let newWidth = startWidth + delta;
 
-                // 🔒 мінімальна ширина
                 if (newWidth < MIN_COL_WIDTH) {
                     newWidth = MIN_COL_WIDTH;
+                    delta = newWidth - startWidth;
                 }
 
-                th.style.width = newWidth + "px";
+                finalWidth = newWidth;
+
+                guideLine.style.left = thRect.right + delta + "px";
             };
 
             const stop = () => {
@@ -52,8 +69,11 @@
                     this.sortable.option("disabled", false);
                 }
 
-                clearTimeout(resizeTimer);
+                th.style.width = finalWidth + "px";
 
+                guideLine.remove();
+
+                clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(() => {
                     saveTableState(this.table);
                 }, 50);
@@ -66,6 +86,7 @@
             document.addEventListener("mouseup", stop);
         });
     };
+
 
     ColumnResizer.prototype.destroy = function () {
         this.table.querySelectorAll(".resizer").forEach(r => r.remove());

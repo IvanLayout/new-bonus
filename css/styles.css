@@ -1007,6 +1007,16 @@ option {
 	white-space: nowrap;
 }
 
+.column-resize-guide {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #A7A7A7;
+    z-index: 9999;
+    pointer-events: none;
+}
+
 .info-table table td{
 	position: relative;
 	background: #fff;
