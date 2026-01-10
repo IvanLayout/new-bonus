@@ -77,12 +77,12 @@
 											</button>
 											<button type="button" class="info-table__head-btn">
 												<svg>
-													<use xlink:href="images/sprite.svg#def"></use>
+													<use xlink:href="images/sprite.svg#csv"></use>
 												</svg>
 											</button>
-											<button type="button" class="info-table__head-btn">
+											<button type="button" data-open-modal data-content="#modal-info-settings" class="info-table__head-btn">
 												<svg>
-													<use xlink:href="images/sprite.svg#def"></use>
+													<use xlink:href="images/sprite.svg#settings"></use>
 												</svg>
 											</button>
 										</div>
@@ -256,7 +256,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
+												<tr data-double-open-modal data-content="#modal-info-user">
 													<td data-key="number">1</td>
 													<td data-key="name"></td>
 													<td data-key="age">Я пойду домой</td>
@@ -269,7 +269,7 @@
 													<td data-key="val6"></td>
 													<td data-key="val7"></td>
 												</tr>
-												<tr>
+												<tr data-double-open-modal data-content="#modal-info-user">
 													<td data-key="number">2</td>
 													<td data-key="name"></td>
 													<td data-key="age">Я пойду домой</td>
@@ -282,7 +282,7 @@
 													<td data-key="val6"></td>
 													<td data-key="val7"></td>
 												</tr>
-												<tr>
+												<tr data-double-open-modal data-content="#modal-info-user">
 													<td data-key="number">3</td>
 													<td data-key="name"></td>
 													<td data-key="age">Я пойду домой</td>
@@ -295,7 +295,7 @@
 													<td data-key="val6"></td>
 													<td data-key="val7"></td>
 												</tr>
-												<tr>
+												<tr data-double-open-modal data-content="#modal-info-user">
 													<td data-key="number">4</td>
 													<td data-key="name"></td>
 													<td data-key="age">Я пойду домой</td>
@@ -314,15 +314,15 @@
 								</div>
 							</div>
 							<div class="info-page__colr">
-								<button type="button" class="info-page__btn">
+								<button type="button" data-open-modal data-content="#modal-bonus-release" class="info-page__btn">
 									<span>Присвоить бонус</span>
 								</button>
 
-								<button type="button" class="info-page__btn">
+								<button type="button" data-open-modal data-content="#modal-email-newsletters" class="info-page__btn">
 									<span>Настроить Email рассылку</span>
 								</button>
 
-								<button type="button" class="info-page__btn">
+								<button type="button" data-open-modal data-content="#modal-sms-messaging" class="info-page__btn">
 									<span>Настроить SMS рассылку</span>
 								</button>
 							</div>
@@ -331,6 +331,205 @@
 				</section>
 			</div>
 		</div>
+
+		<div class="page-modal" id="modal-bonus-release">
+			<div class="page-modal__content">
+				<button type="button" data-close-modal class="page-modal__close">
+					<svg>
+						<use xlink:href="images/sprite.svg#close"></use>
+					</svg>
+				</button>
+
+				<div class="page-modal__title">Присвоение бонуса</div>
+
+				<div class="page-modal__items _flex">
+					<div class="page-modal__item">
+						<a href="/" class="page-modal__item-link">
+							<span class="page-modal__item-code">
+								<span>Создать<br>новый</span>
+							</span>
+						</a>
+					</div>
+					<div class="page-modal__item">
+						<a href="/" class="page-modal__item-link">
+							<span class="page-modal__item-code">
+								<span>BD10</span>
+							</span>
+						</a>
+						<div class="page-modal__item-bot">
+							<a href="/" class="page-modal__item-btn">Просмотр</a>
+						</div>
+					</div>
+					<div class="page-modal__item">
+						<a href="/" class="page-modal__item-link">
+							<span class="page-modal__item-code">
+								<span>BD10</span>
+							</span>
+						</a>
+						<div class="page-modal__item-bot">
+							<a href="/" class="page-modal__item-btn">Просмотр</a>
+						</div>
+					</div>
+					<div class="page-modal__item">
+						<a href="/" class="page-modal__item-link">
+							<span class="page-modal__item-code">
+								<span>BD10</span>
+							</span>
+						</a>
+						<div class="page-modal__item-bot">
+							<a href="/" class="page-modal__item-btn">Просмотр</a>
+						</div>
+					</div>
+					<div class="page-modal__item">
+						<a href="/" class="page-modal__item-link">
+							<span class="page-modal__item-code">
+								<span>BD10</span>
+							</span>
+						</a>
+						<div class="page-modal__item-bot">
+							<a href="/" class="page-modal__item-btn">Просмотр</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="page-modal" id="modal-email-newsletters">
+			<div class="page-modal__content">
+				<button type="button" data-close-modal class="page-modal__close">
+					<svg>
+						<use xlink:href="images/sprite.svg#close"></use>
+					</svg>
+				</button>
+
+				<div class="page-modal__title">Выбор шаблона</div>
+
+				<div class="page-modal__items _flex">
+					<div class="page-modal__item">
+						<a href="/" class="page-modal__item-link">
+							<span class="page-modal__item-code">
+								<span>Загрузить<br>новый<br>шаблон</span>
+							</span>
+						</a>
+					</div>
+					<div class="page-modal__item">
+						<a href="/" class="page-modal__item-link">
+							<span class="page-modal__item-code">
+								<span>BD10</span>
+							</span>
+						</a>
+						<div class="page-modal__item-bot">
+							<a href="/" class="page-modal__item-btn">Просмотр</a>
+						</div>
+					</div>
+					<div class="page-modal__item">
+						<a href="/" class="page-modal__item-link">
+							<span class="page-modal__item-code">
+								<span>VIP bonus</span>
+							</span>
+						</a>
+						<div class="page-modal__item-bot">
+							<a href="/" class="page-modal__item-btn">Просмотр</a>
+						</div>
+					</div>
+					<div class="page-modal__item">
+						<a href="/" class="page-modal__item-link">
+							<span class="page-modal__item-code">
+								<span>WELCOME20</span>
+							</span>
+						</a>
+						<div class="page-modal__item-bot">
+							<a href="/" class="page-modal__item-btn">Просмотр</a>
+						</div>
+					</div>
+					<div class="page-modal__item">
+						<a href="/" class="page-modal__item-link">
+							<span class="page-modal__item-code">
+								<span>BD10</span>
+							</span>
+						</a>
+						<div class="page-modal__item-bot">
+							<a href="/" class="page-modal__item-btn">Просмотр</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="page-modal" id="modal-sms-messaging">
+			<div class="page-modal__content">
+				<button type="button" data-close-modal class="page-modal__close">
+					<svg>
+						<use xlink:href="images/sprite.svg#close"></use>
+					</svg>
+				</button>
+
+				<div class="page-modal__title">nxckcvhfui</div>
+			</div>
+		</div>
+
+		<div class="page-modal" id="modal-info-user">
+			<div class="page-modal__content">
+				<button type="button" data-close-modal class="page-modal__close">
+					<svg>
+						<use xlink:href="images/sprite.svg#close"></use>
+					</svg>
+				</button>
+
+				<div class="page-modal__title">About user</div>
+			</div>
+		</div>
+
+		<div class="page-modal" id="modal-info-settings">
+			<div class="page-modal__content">
+				<button type="button" data-close-modal class="page-modal__close">
+					<svg>
+						<use xlink:href="images/sprite.svg#close"></use>
+					</svg>
+				</button>
+
+				<div class="page-modal__title">Настроики таблицы пользователя</div>
+
+				<form action="" class="form page-modal__form">
+					<div class="checkboxes">
+						<div class="checkbox">
+							<label class="checkbox__label">
+								<input type="checkbox" name="" checked>
+
+								<span class="checkbox__text">Клиент</span>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label class="checkbox__label">
+								<input type="checkbox" name="" checked>
+
+								<span class="checkbox__text">Активность</span>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label class="checkbox__label">
+								<input type="checkbox" name="" checked>
+
+								<span class="checkbox__text">Оборот по ставкам</span>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label class="checkbox__label">
+								<input type="checkbox" name="">
+
+								<span class="checkbox__text">Активность</span>
+							</label>
+						</div>
+					</div>
+
+					<div class="form__submit">
+						<button type="submit" class="form__submit-btn">Показать</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		
 
 
 		<!-- Подключение javascript файлов -->

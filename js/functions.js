@@ -18,7 +18,6 @@ const observer = new IntersectionObserver(scrollTracking, {
 boxes.forEach(element => observer.observe(element))
 
 document.addEventListener('DOMContentLoaded', () =>{
-	// Mini modal header and page ladder.html 
 	function isTouchDevice() {
 		return 'ontouchstart' in window || navigator.maxTouchPoints;
 	}
@@ -71,7 +70,78 @@ document.addEventListener('DOMContentLoaded', () =>{
 			if (isTouchDevice()) document.body.style.cursor = 'default';
 		}
 	});
+
+
+	const openModalButtons = document.querySelectorAll('[data-open-modal]');
+	const doubleOpenModalButtons = document.querySelectorAll('[data-double-open-modal]');
+	const closeModalButtons = document.querySelectorAll('[data-close-modal]');
+	const modals = document.querySelectorAll('.page-modal');
+
+	openModalButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			setScrollWidth();
+
+			const openedModal = document.querySelector('.page-modal._show');
+			if (openedModal) {
+				closeModal(openedModal);
+			}
+
+			openModal(button.dataset.content);
+		});
+	});
+
+	doubleOpenModalButtons.forEach(button => {
+		button.addEventListener('dblclick', () => {
+			setScrollWidth();
+
+			const openedModal = document.querySelector('.page-modal._show');
+			if (openedModal) {
+				closeModal(openedModal);
+			}
+
+			openModal(button.dataset.content);
+		});
+	});
+
+	closeModalButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			const modal = button.closest('.page-modal');
+			closeModal(modal);
+		});
+	});
+
+	modals.forEach(modal => {
+		modal.addEventListener('click', (e) => {
+			if (e.target === modal) {
+				closeModal(modal);
+			}
+		});
+	});
+
+	document.addEventListener('keydown', (e) => {
+		if (e.key !== 'Escape') return;
+
+		const openedModal = document.querySelector('.page-modal._show');
+		if (openedModal) {
+			closeModal(openedModal);
+		}
+	});
 });
+
+function openModal(modalSelector) {
+	const modal = document.querySelector(modalSelector);
+	if (!modal) return;
+
+	modal.classList.add('_show');
+	document.querySelector('body').classList.add('_modal-look')
+}
+
+function closeModal(modal) {
+	if (!modal) return;
+
+	modal.classList.remove('_show');
+	document.querySelector('body').classList.remove('_modal-look')
+}
 
 
 const STORAGE_KEY = 'myTableColumns';
@@ -123,45 +193,62 @@ function restoreTableState(table) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-	const table = document.querySelector('#myTable');
+	if ( document.querySelector('#myTable') ) {
+		const table = document.querySelector('#myTable');
 
-	restoreTableState(table);
+		restoreTableState(table);
 
-	const sortable = new Sortable(
-    table.querySelector('thead tr'),
-	{
-		animation: 150,
-		handle: 'th',
-		draggable: 'th',
-		filter: '.no-drag',
-		onMove(evt) {
-			const dragged = evt.dragged;
-			const target  = evt.related;
+		const sortable = new Sortable(
+		table.querySelector('thead tr'),
+		{
+			animation: 150,
+			handle: 'th',
+			draggable: 'th',
+			filter: '.no-drag',
+			onMove(evt) {
+				const dragged = evt.dragged;
+				const target  = evt.related;
 
-			if (dragged.classList.contains('no-drag')) return false;
-			if (target && target.classList.contains('no-drag')) return false;
+				if (dragged.classList.contains('no-drag')) return false;
+				if (target && target.classList.contains('no-drag')) return false;
 
-			return true;
-		},
-		onEnd(evt) {
-			const from = evt.oldIndex;
-			const to = evt.newIndex;
+				return true;
+			},
+			onEnd(evt) {
+				const from = evt.oldIndex;
+				const to = evt.newIndex;
 
-			table.querySelectorAll('tbody tr').forEach(row => {
-				const cells = row.children;
-				const moving = cells[from];
+				table.querySelectorAll('tbody tr').forEach(row => {
+					const cells = row.children;
+					const moving = cells[from];
 
-				if (from < to) {
-					row.insertBefore(moving, cells[to].nextSibling);
-				} else {
-					row.insertBefore(moving, cells[to]);
-				}
-			});
+					if (from < to) {
+						row.insertBefore(moving, cells[to].nextSibling);
+					} else {
+						row.insertBefore(moving, cells[to]);
+					}
+				});
 
-			saveTableState(table);
+				saveTableState(table);
+			}
 		}
-    }
-  );
+	);
 
-  const columnResizer = new ColumnResizer(table, sortable);
+	const columnResizer = new ColumnResizer(table, sortable);
+	}
 });
+
+
+function setScrollWidth() {
+  const hasScroll =
+    document.documentElement.scrollHeight > window.innerHeight;
+
+  const scrollbarWidth = hasScroll
+    ? window.innerWidth - document.documentElement.clientWidth
+    : 0;
+
+  document.documentElement.style.setProperty(
+    '--scroll_width',
+    `${scrollbarWidth}px`
+  );
+}
