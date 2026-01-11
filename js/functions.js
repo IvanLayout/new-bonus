@@ -126,6 +126,94 @@ document.addEventListener('DOMContentLoaded', () =>{
 			closeModal(openedModal);
 		}
 	});
+
+	// Выбор файла (только один файл)
+	document.querySelectorAll('.file-selection input[type="file"]').forEach(input => {
+		input.addEventListener('change', function () {
+			const parent = this.closest('.file-selection');
+			const pathName = parent.querySelector('.file-selection__path-name');
+			const path = parent.querySelector('.file-selection__path');
+
+			if (this.files.length === 1) {
+				// Показываем только имя файла
+				pathName.textContent = this.files[0].name;
+				parent.classList.add('_active');
+			} else {
+				// Если файл не выбран, возвращаем дефолтный текст с HTML
+				const defaultText = pathName.dataset.text;
+				pathName.innerHTML = defaultText;
+				parent.classList.remove('_active');
+			}
+		});
+	});
+
+
+	if ( document.querySelector('#myTable') ) {
+		const table = document.querySelector('#myTable');
+
+		restoreTableState(table);
+
+		const sortable = new Sortable(
+			table.querySelector('thead tr'),
+			{
+				animation: 150,
+				handle: 'th',
+				draggable: 'th',
+				filter: '.no-drag',
+				onMove(evt) {
+					const dragged = evt.dragged;
+					const target  = evt.related;
+
+					if (dragged.classList.contains('no-drag')) return false;
+					if (target && target.classList.contains('no-drag')) return false;
+
+					return true;
+				},
+				onEnd(evt) {
+					const from = evt.oldIndex;
+					const to = evt.newIndex;
+
+					table.querySelectorAll('tbody tr').forEach(row => {
+						const cells = row.children;
+						const moving = cells[from];
+
+						if (from < to) {
+							row.insertBefore(moving, cells[to].nextSibling);
+						} else {
+							row.insertBefore(moving, cells[to]);
+						}
+					});
+
+					saveTableState(table);
+				}
+			}
+		);
+
+		const columnResizer = new ColumnResizer(table, sortable);
+	}
+
+	const sortables = document.querySelectorAll('.sortable');
+
+	if (sortables.length) {
+		sortables.forEach(el => {
+			new Sortable(el, {
+				axis: 'y',
+				handle: '.handle',
+				animation: 150,
+				cursor: 'move'
+			});
+		});
+	}
+
+	if (document.querySelector('.page-modal__scroll')) {
+		addScrollPad();
+	}
+});
+
+document.addEventListener('resize', () =>{
+	if (document.querySelector('.page-modal__scroll')) {
+		addScrollPad();
+	}
 });
 
 function openModal(modalSelector) {
@@ -192,52 +280,6 @@ function restoreTableState(table) {
 	});
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-	if ( document.querySelector('#myTable') ) {
-		const table = document.querySelector('#myTable');
-
-		restoreTableState(table);
-
-		const sortable = new Sortable(
-		table.querySelector('thead tr'),
-		{
-			animation: 150,
-			handle: 'th',
-			draggable: 'th',
-			filter: '.no-drag',
-			onMove(evt) {
-				const dragged = evt.dragged;
-				const target  = evt.related;
-
-				if (dragged.classList.contains('no-drag')) return false;
-				if (target && target.classList.contains('no-drag')) return false;
-
-				return true;
-			},
-			onEnd(evt) {
-				const from = evt.oldIndex;
-				const to = evt.newIndex;
-
-				table.querySelectorAll('tbody tr').forEach(row => {
-					const cells = row.children;
-					const moving = cells[from];
-
-					if (from < to) {
-						row.insertBefore(moving, cells[to].nextSibling);
-					} else {
-						row.insertBefore(moving, cells[to]);
-					}
-				});
-
-				saveTableState(table);
-			}
-		}
-	);
-
-	const columnResizer = new ColumnResizer(table, sortable);
-	}
-});
-
 
 function setScrollWidth() {
   const hasScroll =
@@ -251,4 +293,17 @@ function setScrollWidth() {
     '--scroll_width',
     `${scrollbarWidth}px`
   );
+}
+
+// Функція для перевірки скролу і додавання класу
+function addScrollPad() {
+	// Вибираємо всі блоки з overflow-y: auto
+	document.querySelectorAll('.page-modal__scroll').forEach(el => {
+		// el.scrollHeight > el.clientHeight означає, що скрол можливий
+		if (el.scrollHeight > el.clientHeight) {
+			el.classList.add('page-modal__scroll_pad');
+		} else {
+			el.classList.remove('page-modal__scroll_pad'); // прибираємо клас, якщо скролу немає
+		}
+	});
 }
