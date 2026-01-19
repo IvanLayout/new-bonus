@@ -76,15 +76,28 @@ document.addEventListener('DOMContentLoaded', () =>{
 	const doubleOpenModalButtons = document.querySelectorAll('[data-double-open-modal]');
 	const closeModalButtons = document.querySelectorAll('[data-close-modal]');
 	const modals = document.querySelectorAll('.page-modal');
+	const formsWithModal = document.querySelectorAll('[data-open-modal-after-submit]');
+
+	formsWithModal.forEach(form => {
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+
+			const modalSelector = form.dataset.openModalAfterSubmit;
+
+			form.closest('.page-modal._show').classList.remove('_show');
+
+			openModal(modalSelector);
+		});
+	});
 
 	openModalButtons.forEach(button => {
 		button.addEventListener('click', () => {
 			setScrollWidth();
 
 			const openedModal = document.querySelector('.page-modal._show');
-			if (openedModal) {
-				closeModal(openedModal);
-			}
+			// if (openedModal) {
+			// 	closeModal(openedModal);
+			// }
 
 			openModal(button.dataset.content);
 		});
@@ -121,11 +134,23 @@ document.addEventListener('DOMContentLoaded', () =>{
 	document.addEventListener('keydown', (e) => {
 		if (e.key !== 'Escape') return;
 
-		const openedModal = document.querySelector('.page-modal._show');
-		if (openedModal) {
-			closeModal(openedModal);
+		const openedModals = document.querySelectorAll('.page-modal._show');
+		const lastModal = openedModals[openedModals.length - 1];
+
+		if (lastModal) {
+			closeModal(lastModal);
 		}
 	});
+
+
+	// document.addEventListener('keydown', (e) => {
+	// 	if (e.key !== 'Escape') return;
+
+	// 	const openedModal = document.querySelector('.page-modal._show');
+	// 	if (openedModal) {
+	// 		closeModal(openedModal);
+	// 	}
+	// });
 
 	// Выбор файла (только один файл)
 	document.querySelectorAll('.file-selection input[type="file"]').forEach(input => {
@@ -208,6 +233,100 @@ document.addEventListener('DOMContentLoaded', () =>{
 	if (document.querySelector('.page-modal__scroll')) {
 		addScrollPad();
 	}
+
+
+	document.addEventListener('click', e => {
+		const select = e.target.closest('.custom-select');
+
+		// Закрити всі select
+		document.querySelectorAll('.options._show')
+		.forEach(o => o.classList.remove('_show'));
+
+		if (!select) return;
+
+		const input = select.querySelector('.select-input');
+		const options = select.querySelector('.options');
+		const hidden = select.querySelector('input[type="hidden"]');
+
+		// Клік по input
+		if (e.target === input) {
+			options.classList.add('_show');
+			filterOptions(input, options);
+		}
+
+		// Клік по option
+		if (e.target.tagName === 'LI') {
+			input.value = e.target.textContent;
+			hidden.value = e.target.dataset.value;
+			options.classList.remove('_show');
+		}
+	});
+
+	// Пошук
+	document.addEventListener('input', e => {
+		if (!e.target.classList.contains('select-input')) return;
+		const select = e.target.closest('.custom-select');
+		const options = select.querySelector('.options');
+		options.classList.add('_show');
+
+		filterOptions(e.target, options);
+	});
+
+	function filterOptions(input, options) {
+		const value = input.value.toLowerCase();
+
+		options.querySelectorAll('li').forEach(li => {
+			li.hidden = !li.textContent.toLowerCase().includes(value);
+		});
+	}
+
+	document.querySelectorAll('.form-sms__delete-btn').forEach(btn => {
+		btn.addEventListener('click', function(e) {
+			e.preventDefault();
+
+			deleteItem = btn.closest('.delete-item');
+			deleteItem.remove();
+		});
+	});
+
+	// Tabs
+	document.querySelectorAll(".tabs__btn").forEach(function(element) {
+		element.addEventListener("click", function(e) {
+			e.preventDefault();
+	
+			let parent = element.closest(".tabs-container");
+			let activeTab = element.getAttribute("data-content");
+	
+			if (!element.classList.contains("_active")) {
+				parent.querySelector(".tabs__btn._active").classList.remove("_active");
+				parent.querySelector(".tab-content._active").classList.remove("_active");
+	
+				element.classList.add("_active");
+				parent.querySelector(activeTab).classList.add("_active");
+			}
+		})
+	})
+
+
+	const openEditButtons = document.querySelectorAll('[data-open-edit]');
+	const closeEditButtons = document.querySelectorAll('[data-close-edit]');
+
+	openEditButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			const modal = document.querySelector(button.dataset.content);
+			if (!modal) return;
+
+			modal.classList.add('_show');
+		});
+	});
+
+	closeEditButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			const modal = button.closest('.edit-info');
+			console.log(modal)
+			modal.classList.remove('_show');
+		});
+	});
 });
 
 document.addEventListener('resize', () =>{
@@ -304,6 +423,15 @@ function addScrollPad() {
 			el.classList.add('page-modal__scroll_pad');
 		} else {
 			el.classList.remove('page-modal__scroll_pad'); // прибираємо клас, якщо скролу немає
+		}
+	});
+
+	document.querySelectorAll('.info-page__colr').forEach(el => {
+		// el.scrollHeight > el.clientHeight означає, що скрол можливий
+		if (el.scrollHeight > el.clientHeight) {
+			el.classList.add('info-page__colr_pad');
+		} else {
+			el.classList.remove('info-page__colr_pad'); // прибираємо клас, якщо скролу немає
 		}
 	});
 }
