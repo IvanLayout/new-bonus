@@ -21,6 +21,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
 
+		<link rel="stylesheet" href="css/air-datepicker.css">
 		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<body>
@@ -415,42 +416,42 @@
 										<div class="checkbox-times _flex">
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time">
+													<input type="radio" name="radio-time2">
 
 													<span class="checkbox-time__text">Сегодня</span>
 												</label>
 											</div>
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time" checked>
+													<input type="radio" name="radio-time2" checked>
 
 													<span class="checkbox-time__text">Вчера</span>
 												</label>
 											</div>
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time">
+													<input type="radio" name="radio-time2">
 
 													<span class="checkbox-time__text">За 3 дня</span>
 												</label>
 											</div>
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time">
+													<input type="radio" name="radio-time2">
 
 													<span class="checkbox-time__text">Неделя</span>
 												</label>
 											</div>
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time">
+													<input type="radio" name="radio-time2">
 
 													<span class="checkbox-time__text">Месяц</span>
 												</label>
 											</div>
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time">
+													<input type="radio" name="radio-time2">
 
 													<span class="checkbox-time__text">Год</span>
 												</label>
@@ -487,42 +488,42 @@
 										<div class="checkbox-times _flex">
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time">
+													<input type="radio" name="radio-time3">
 
 													<span class="checkbox-time__text">Сегодня</span>
 												</label>
 											</div>
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time" checked>
+													<input type="radio" name="radio-time3" checked>
 
 													<span class="checkbox-time__text">Вчера</span>
 												</label>
 											</div>
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time">
+													<input type="radio" name="radio-time3">
 
 													<span class="checkbox-time__text">За 3 дня</span>
 												</label>
 											</div>
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time">
+													<input type="radio" name="radio-time3">
 
 													<span class="checkbox-time__text">Неделя</span>
 												</label>
 											</div>
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time">
+													<input type="radio" name="radio-time3">
 
 													<span class="checkbox-time__text">Месяц</span>
 												</label>
 											</div>
 											<div class="checkbox-time">
 												<label class="checkbox-time__label">
-													<input type="radio" name="radio-time">
+													<input type="radio" name="radio-time3">
 
 													<span class="checkbox-time__text">Год</span>
 												</label>
@@ -576,7 +577,7 @@
 								</span>
 							</a>
 							<div class="page-modal__item-bot">
-								<a href="/" class="page-modal__item-btn">Просмотр</a>
+								<button type="button" data-content="#modal-bonus-settings" data-open-modal class="page-modal__item-btn">Просмотр</button>
 							</div>
 						</div>
 						<div class="page-modal__item">
@@ -586,7 +587,7 @@
 								</span>
 							</a>
 							<div class="page-modal__item-bot">
-								<a href="/" class="page-modal__item-btn">Просмотр</a>
+								<button type="button" data-content="#modal-bonus-settings" data-open-modal class="page-modal__item-btn">Просмотр</button>
 							</div>
 						</div>
 						<div class="page-modal__item">
@@ -596,7 +597,7 @@
 								</span>
 							</a>
 							<div class="page-modal__item-bot">
-								<a href="/" class="page-modal__item-btn">Просмотр</a>
+								<button type="button" data-content="#modal-bonus-settings" data-open-modal class="page-modal__item-btn">Просмотр</button>
 							</div>
 						</div>
 						<div class="page-modal__item">
@@ -606,7 +607,7 @@
 								</span>
 							</a>
 							<div class="page-modal__item-bot">
-								<a href="/" class="page-modal__item-btn">Просмотр</a>
+								<button type="button" data-content="#modal-bonus-settings" data-open-modal class="page-modal__item-btn">Просмотр</button>
 							</div>
 						</div>
 					</div>
@@ -655,7 +656,7 @@
 				<div class="page-modal__scroll">
 					<form action="" class="form">
 						<div class="tabs-container">
-							<div class="tabs tabs_marg _flex">
+							<div class="tabs tabs_fix tabs_marg _flex">
 								<button type="button" data-content="#tab1" class="tabs__btn _active">
 									Настройка бонуса
 								</button>
@@ -668,20 +669,430 @@
 							</div>
 
 							<div class="tab-content _active" id="tab1">
-								<div class="form__label">Название бонуса</div>
+								<div class="form__line">
+									<div class="form__label">Код бонуса</div>
+									<div class="form__field">
+										<input type="text" placeholder="Ведите код бонуса" name="" value="" class="form__input">
+									</div>
+								</div>
 
 								<div class="form__line">
+									<div class="form__label">Период</div>
+									<div class="form__line-flex _flex">
+										<div class="form__field">
+											<input type="text" placeholder="Дата старта бонуса" name="" value="" id="datepicker1" class="form__input form__input_date">
+										</div>
+										<div class="form__field">
+											<input type="text" placeholder="Дота окончания бонуса" name="" value="" id="datepicker2" class="form__input form__input_date">
+										</div>
+									</div>
+								</div>
+
+								<div class="form__line">
+									<div class="form__label">Название бонуса</div>
 									<div class="form__field">
 										<input type="text" placeholder="Ведите название бонуса" name="" value="" class="form__input">
+									</div>
+								</div>
+
+								<div class="form__line">
+									<div class="form__label">Описание бонуса</div>
+									<div class="form__field">
+										<textarea name="" placeholder="Ведите описание бонуса" class="form__textarea"></textarea>
+									</div>
+								</div>
+
+								<div class="form__flex _flex">
+									<div class="form__line">
+										<div class="form__label">Сумма бонуса</div>
+										<div class="form__field">
+											<input type="text" placeholder="" name="" value="" class="form__input">
+										</div>
+									</div>
+									<div class="form__line">
+										<div class="form__label">% от значения</div>
+										<div class="form__field">
+											<input type="text" placeholder="" name="" value="" class="form__input">
+										</div>
+									</div>
+								</div>
+
+								<div class="form__flex _flex">
+									<div class="form__line">
+										<div class="form__label">Пороговое значение</div>
+										<div class="form__field">
+											<input type="text" placeholder="" name="" value="" class="form__input">
+										</div>
+									</div>
+									<div class="form__line">
+										<div class="form__label">Минимальная ставка</div>
+										<div class="form__field">
+											<input type="text" placeholder="" name="" value="" class="form__input">
+										</div>
+									</div>
+								</div>
+
+								<div class="form__flex _flex">
+									<div class="form__line">
+										<div class="form__label">Последовательность депозита</div>
+										<div class="form__field">
+											<input type="text" placeholder="" name="" value="" class="form__input">
+										</div>
+									</div>
+									<div class="form__line">
+										<div class="form__label">Период выполнения условий бонуса, дней</div>
+										<div class="form__field">
+											<input type="text" placeholder="" name="" value="" class="form__input">
+										</div>
+									</div>
+								</div>
+
+								<div class="form__flex _flex">
+									<div class="form__line">
+										<div class="form__label">Минимальная сумма депозита €</div>
+										<div class="form__field">
+											<input type="text" placeholder="" name="" value="" class="form__input">
+										</div>
+									</div>
+									<div class="form__line">
+										<div class="form__label">Ограничение размера бонуса, €</div>
+										<div class="form__field">
+											<input type="text" placeholder="" name="" value="" class="form__input">
+										</div>
+									</div>
+								</div>
+
+								<div class="form__line">
+									<div class="form__label">Тип рассчета бонуса</div>
+									<div class="form__field">
+										<select>
+											<option value="0">- Выбери -</option>
+											<option value="Событие">Событие</option>
+											<option value="Сумма ставок">Сумма ставок</option>
+											<option value="Net win">Net win</option>
+											<option value="Net loss / GGR">Net loss / GGR</option>
+											<option value="Колличество ставок">Колличество ставок</option>
+										</select>
 									</div>
 								</div>
 							</div>
 
 							<div class="tab-content" id="tab2">
-								
+								<div class="main-search main-search_marg _flex">
+									<input type="text" value="" placeholder="Поиск ..." class="main-search__input">
+
+									<button type="submit" class="main-search__submit">
+										<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M15.2008 15.2L11.7288 11.728M13.6008 7.19999C13.6008 10.7346 10.7354 13.6 7.20078 13.6C3.66616 13.6 0.800781 10.7346 0.800781 7.19999C0.800781 3.66537 3.66616 0.799988 7.20078 0.799988C10.7354 0.799988 13.6008 3.66537 13.6008 7.19999Z" stroke-linecap="round" stroke-linejoin="round"/>
+										</svg>
+									</button>
+								</div>
+
+								<div class="choose-items">
+									<div class="choose-items__title">Провайдеры</div>
+
+									<div class="accordion">
+										<div class="accordion__item _show choose-items__item">
+											<div class="accordion__title">
+												<div class="checkbox checkbox_main">
+													<label class="checkbox__label checkbox__label-choose">
+														<input type="checkbox" name="">
+
+														<span class="checkbox__text _reverse">Endorphina</span>
+													</label>
+												</div>
+
+												<button type="button" class="accordion__open">
+													<svg>
+														<use xlink:href="images/sprite.svg#arrow2"></use>
+													</svg>
+												</button>
+											</div>
+
+											<div class="accordion__data choose-items__item-data">
+												<div class="checkbox">
+													<label class="checkbox__label checkbox__label-choose">
+														<input type="checkbox" name="" checked>
+
+														<span class="checkbox__text _reverse">Geisha (4224)</span>
+													</label>
+												</div>
+												<div class="checkbox">
+													<label class="checkbox__label checkbox__label-choose">
+														<input type="checkbox" name="" checked>
+
+														<span class="checkbox__text _reverse">The Vampires (4222)</span>
+													</label>
+												</div>
+												<div class="checkbox">
+													<label class="checkbox__label checkbox__label-choose">
+														<input type="checkbox" name="" checked>
+
+														<span class="checkbox__text _reverse">Urartu (4221)</span>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="accordion__item choose-items__item">
+											<div class="accordion__title">
+												<div class="checkbox checkbox_main">
+													<label class="checkbox__label checkbox__label-choose">
+														<input type="checkbox" name="">
+
+														<span class="checkbox__text _reverse">Endorphina</span>
+													</label>
+												</div>
+
+												<button type="button" class="accordion__open">
+													<svg>
+														<use xlink:href="images/sprite.svg#arrow2"></use>
+													</svg>
+												</button>
+											</div>
+
+											<div class="accordion__data choose-items__item-data">
+												<div class="checkbox">
+													<label class="checkbox__label checkbox__label-choose">
+														<input type="checkbox" name="">
+
+														<span class="checkbox__text _reverse">Geisha (4224)</span>
+													</label>
+												</div>
+												<div class="checkbox">
+													<label class="checkbox__label checkbox__label-choose">
+														<input type="checkbox" name="">
+
+														<span class="checkbox__text _reverse">The Vampires (4222)</span>
+													</label>
+												</div>
+												<div class="checkbox">
+													<label class="checkbox__label checkbox__label-choose">
+														<input type="checkbox" name="">
+
+														<span class="checkbox__text _reverse">Urartu (4221)</span>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<hr class="block-hr">
+
+									<div class="choose-items__title">Список игр</div>
+
+									<div class="choose-items__list">
+										<div class="choose-items__list-item">Geisha (4224)</div>
+										<div class="choose-items__list-item">The Vampires (4222)</div>
+										<div class="choose-items__list-item">Urartu (4221)</div>
+									</div>
+								</div>
 							</div>
 
 							<div class="tab-content" id="tab3">
+								<div class="form__line">
+									<div class="form__label">Баннер</div>
+									<div class="form__field">
+										<input type="file" name="bonus_banner">
+										<input type="hidden" name="usr_id" value="20353">
+										<input type="hidden" name="action" value="upload_doc">
+										<input type="submit" value="Upload">
+									</div>
+								</div>
+
+								<div class="form__line">
+									<div class="form__label">Баннер маленький</div>
+									<div class="form__field">
+										<input type="file" name="bonus_banner_small">
+										<input type="hidden" name="usr_id" value="20353">
+										<input type="hidden" name="action" value="upload_doc">
+										<input type="submit" value="Upload">
+									</div>
+								</div>
+
+								<div class="tabs-container">
+									<div class="tabs tabs_fix2 tabs_marg _flex">
+										<button type="button" data-content="#tab4" class="tabs__btn _active">
+											EN
+										</button>
+										<button type="button" data-content="#tab5" class="tabs__btn">
+											LV
+										</button>
+										<button type="button" data-content="#tab6" class="tabs__btn">
+											RU
+										</button>
+									</div>
+									<div class="tab-content _active" id="tab4">
+										<div class="form__line">
+											<div class="form__label">Название бонуса (en)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Тип бонуса (en)</div>
+											<div class="form__field">
+												<input type="text" name="" value="" class="form__input">
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Заголовок бонуса (en)</div>
+											<div class="form__field">
+												<input type="text" name="" value="" class="form__input">
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Описание бонуса (en)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Заголовок бонуса 2 (en)</div>
+											<div class="form__field">
+												<input type="text" name="" value="" class="form__input">
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Описание бонуса 2 (en)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">SEO Title (en)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">SEO Description (en)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="tab-content" id="tab5">
+										<div class="form__line">
+											<div class="form__label">Название бонуса (lv)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Тип бонуса (lv)</div>
+											<div class="form__field">
+												<input type="text" name="" value="" class="form__input">
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Заголовок бонуса (lv)</div>
+											<div class="form__field">
+												<input type="text" name="" value="" class="form__input">
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Описание бонуса (lv)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Заголовок бонуса 2 (lv)</div>
+											<div class="form__field">
+												<input type="text" name="" value="" class="form__input">
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Описание бонуса 2 (lv)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">SEO Title (lv)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">SEO Description (lv)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="tab-content" id="tab6">
+										<div class="form__line">
+											<div class="form__label">Название бонуса (ru)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Тип бонуса (ru)</div>
+											<div class="form__field">
+												<input type="text" name="" value="" class="form__input">
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Заголовок бонуса (ru)</div>
+											<div class="form__field">
+												<input type="text" name="" value="" class="form__input">
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Описание бонуса (ru)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Заголовок бонуса 2 (ru)</div>
+											<div class="form__field">
+												<input type="text" name="" value="" class="form__input">
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">Описание бонуса 2 (ru)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">SEO Title (ru)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+
+										<div class="form__line">
+											<div class="form__label">SEO Description (ru)</div>
+											<div class="form__field">
+												<textarea name="" class="form__textarea"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
 								
 							</div>
 						</div>
@@ -1285,6 +1696,7 @@
 		<!-- Подключение javascript файлов -->
 		<script src="js/Sortable.min.js"></script>
 		<script src="js/column-resizer.js"></script>
+		<script src="js/air-datepicker.js"></script>
 
 		<script src="js/functions.js"></script>
 	</body>

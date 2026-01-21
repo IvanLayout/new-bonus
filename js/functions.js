@@ -327,6 +327,71 @@ document.addEventListener('DOMContentLoaded', () =>{
 			modal.classList.remove('_show');
 		});
 	});
+
+
+	let dpMin, dpMax;
+
+	dpMin = new AirDatepicker('#datepicker1', {
+		isMobile: true,
+		autoClose: true,
+		timepicker: true,
+		timeFormat: 'hh:mm AA',
+		onSelect({date}) {
+			dpMax.update({
+				minDate: date
+			})
+		}
+	})
+
+	dpMax = new AirDatepicker('#datepicker2', {
+		isMobile: true,
+		autoClose: true,
+		timepicker: true,
+		timeFormat: 'hh:mm AA',
+		onSelect({date}) {
+			dpMin.update({
+				maxDate: date
+			})
+		}
+	})
+
+	document.querySelectorAll('.accordion__open').forEach(button => {
+		button.addEventListener('click', () => {
+			button.closest('.accordion__item').classList.toggle('_show');
+		});
+	});
+
+
+	document.querySelectorAll('.choose-items__item').forEach(item => {
+		// ===== Чекбокси =====
+		const mainCheckbox = item.querySelector('.checkbox_main input');
+		const innerCheckboxes = item.querySelectorAll(
+			'.choose-items__item-data .checkbox__label-choose input'
+		);
+
+		// Функція перевірки: чи всі внутрішні вибрані
+		const updateMainCheckbox = () => {
+			const allChecked = [...innerCheckboxes].length &&
+				[...innerCheckboxes].every(cb => cb.checked);
+
+			mainCheckbox.checked = allChecked;
+		};
+
+		// Початкова ініціалізація (якщо в HTML вже є checked)
+		updateMainCheckbox();
+
+		// Клік по головному
+		mainCheckbox.addEventListener('change', () => {
+			innerCheckboxes.forEach(cb => {
+				cb.checked = mainCheckbox.checked;
+			});
+		});
+
+		// Клік по внутрішніх
+		innerCheckboxes.forEach(cb => {
+			cb.addEventListener('change', updateMainCheckbox);
+		});
+	});
 });
 
 document.addEventListener('resize', () =>{
